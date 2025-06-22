@@ -35,19 +35,19 @@ export default function About() {
     setSubmitStatus("");
 
     try {
-      // EmailJS configuration - you'll need to replace these with your actual IDs
+      // EmailJS configuration
       const emailjs = (await import("@emailjs/browser")).default;
 
       await emailjs.send(
-        "service_3zahifb", // Replace with your EmailJS service ID
-        "template_l2j9fob", // Replace with your EmailJS template ID
+        import.meta.env.VITE_EMAILJS_SERVICE_ID, // EmailJS service ID
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID, // EmailJS template ID
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
           to_name: "Navodith Mondal",
         },
-        "w8lgs2_iqThVkiMRT" // Replace with your EmailJS public key
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY // EmailJS public key
       );
 
       setSubmitStatus("success");
